@@ -1,29 +1,25 @@
 # Australian Census Data
 
-Downloads the 2021 Australian Census (ABS) and builds the geography urbanstats
-consumes. The census tables are collapsed in urbanstats, not here.
+Builds the 2021 ABS geography urbanstats uses into `data/processed/`:
 
-## Build
-
+    pip install -r requirements.txt
     python3 build.py
 
-Downloads ~1.2 GB into `data/raw/` and writes `data/processed/`. Skips files
-already downloaded; `--skip-download` skips that step entirely. Needs pandas,
-openpyxl and geopandas; the `urbanstats-310` env has them.
+A failed download leaves a partial file in `data/raw/`; delete it and re-run.
 
-Nothing under `data/` is committed — build it where you need it.
+| Layer | |
+|---|---|
+| MB | Mesh Block, the smallest unit; populated ones are written as points to `mb_blocks.npz` |
+| SA1 | Statistical Area Level 1, the unit ABS publishes census tables for |
+| STE | State or territory |
+| SA2 | Statistical Area Level 2 |
+| SUA | Significant Urban Area |
+| UCL | Urban Centre and Locality |
+| LGA | Local Government Area |
+| SAL | Suburb and Locality |
+| POA | Postal Area |
+| CED | Commonwealth Electoral Division |
+| SEDL | State Electoral Division, lower house |
+| SEDU | State Electoral Division, upper house (Vic, WA, Tas only) |
 
-`download.py` runs standalone if you only want the raw data. It is stdlib only and
-exists to document where each file came from, so it is deliberately not robust — a
-failed download leaves a partial file, so delete it and re-run.
-
-## Output
-
-- `mb_blocks.npz` — populated mesh blocks: SA1, population, dwellings, land-use
-  category, and a representative point in int32 microdegrees.
-- Boundary layers as zipped shapefiles, EPSG:4326, with null geometries and ESRI
-  sidecars dropped (`abs/regions.py`): STE, SA2, SUA, UCL, LGA, SAL, POA, CED,
-  SEDL, SEDU.
-
-ABS ships both chambers as one `SED` layer, so `abs/electorates.py` splits it into
-`SEDL` and `SEDU`. `MB` and `SA1` are build inputs, not display regions.
+SEDL and SEDU are not ABS layers: `abs/electorates.py` splits ABS's single SED layer into them.

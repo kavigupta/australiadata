@@ -8,8 +8,8 @@ consumes. The census tables are collapsed in urbanstats, not here.
     python3 build.py
 
 Downloads ~1.2 GB into `data/raw/` and writes `data/processed/`. Skips files
-already downloaded; `--skip-download` skips that step entirely. Needs
-geopandas; the `urbanstats-310` env has it.
+already downloaded; `--skip-download` skips that step entirely. Needs pandas,
+openpyxl and geopandas; the `urbanstats-310` env has them.
 
 Nothing under `data/` is committed — build it where you need it.
 
@@ -19,6 +19,8 @@ failed download leaves a partial file, so delete it and re-run.
 
 ## Output
 
+- `mb_blocks.npz` — populated mesh blocks: SA1, population, dwellings, land-use
+  category, and a representative point in int32 microdegrees.
 - Boundary layers as zipped shapefiles, EPSG:4326, with null geometries and ESRI
   sidecars dropped (`abs/regions.py`): STE, SA2, SUA, UCL, LGA, SAL, POA, CED,
   SEDL, SEDU.

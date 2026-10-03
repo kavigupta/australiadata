@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""Download the ABS census release and build the geography urbanstats consumes.
-
-The census tables themselves are collapsed in urbanstats, so the cell mapping lives
-next to the statistics it defines.
-"""
+"""Download the ABS census release and build the geography urbanstats consumes."""
 
 import argparse
 import os

@@ -5,8 +5,6 @@ Builds the 2021 ABS geography urbanstats uses into `data/processed/`:
     pip install -r requirements.txt
     python3 build.py
 
-A failed download leaves a partial file in `data/raw/`; delete it and re-run.
-
 | Layer | |
 |---|---|
 | STE | State or territory |

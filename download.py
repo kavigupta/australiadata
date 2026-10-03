@@ -43,8 +43,11 @@ def download(url: str, path: Path) -> None:
         return
 
     print(f"downloading: {path.name}")
-    with urlopen(url) as response, path.open("wb") as file:
+    # so an interrupted download is never mistaken for a finished one
+    partial = path.with_name(path.name + ".part")
+    with urlopen(url) as response, partial.open("wb") as file:
         shutil.copyfileobj(response, file)
+    partial.replace(path)
 
 
 def download_all(out_dir: str) -> None:

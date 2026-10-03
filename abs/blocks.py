@@ -28,7 +28,6 @@ def truncate_at_footnotes(frame):
 
 
 def load_mb_points(mb_shapefile_zip):
-    """Points only; block polygons are never committed."""
     shapes = gpd.read_file(f"zip://{mb_shapefile_zip}").to_crs("epsg:4326")
     shapes = shapes[shapes.geometry.notna()]
     points = shapes.representative_point()
@@ -53,4 +52,3 @@ def build_blocks(counts_xlsx, mb_shapefile_zip):
         "placeable mesh block missing from shapefile"
     blocks = placeable.merge(points, on="MB_CODE_2021")
     return blocks[blocks.Person > 0].reset_index(drop=True)
-

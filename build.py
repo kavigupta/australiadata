@@ -18,6 +18,7 @@ def write_blocks(out_dir, blocks):
     assert blocks.Person.max() < np.iinfo(np.uint16).max
     assert blocks.Dwelling.max() < np.iinfo(np.uint16).max
     categories, category_codes = np.unique(blocks.MB_CATEGORY_NAME_2021.to_numpy().astype(str), return_inverse=True)
+    assert len(categories) <= np.iinfo(np.uint8).max + 1
     np.savez_compressed(
         os.path.join(out_dir, "mb_blocks.npz"),
         mb_code=blocks.MB_CODE_2021.to_numpy().astype(np.int64),
@@ -58,9 +59,8 @@ def main():
         os.path.join(args.raw_dir, "MB_2021_AUST_SHP_GDA2020.zip"),
     )
     write_blocks(args.out_dir, blocks)
-    print(f"mb_blocks.npz: {len(blocks):,} populated mesh blocks")
-
-    print(f"  mb_blocks.npz  {os.path.getsize(os.path.join(args.out_dir, 'mb_blocks.npz'))/1e6:.2f} MB")
+    path = os.path.join(args.out_dir, "mb_blocks.npz")
+    print(f"  {'mb_blocks.npz':28} {len(blocks):6,} blocks  {os.path.getsize(path)/2**20:7.2f} MiB")
 
 
 if __name__ == "__main__":

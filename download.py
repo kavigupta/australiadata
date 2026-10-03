@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import argparse
 import shutil
 from pathlib import Path
 from urllib.request import urlopen
 
+
+RAW_DIR = "data/raw"
 
 BOUNDARIES = (
     "https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs"
@@ -50,18 +51,12 @@ def download(url: str, path: Path) -> None:
     partial.replace(path)
 
 
-def download_all(out_dir: str) -> None:
-    directory = Path(out_dir)
+def download_all() -> None:
+    directory = Path(RAW_DIR)
     directory.mkdir(parents=True, exist_ok=True)
     for filename, url in FILES.items():
         download(url, directory / filename)
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Download ABS Census data and boundaries.")
-    parser.add_argument("--out-dir", default="data/raw", help="output directory")
-    download_all(parser.parse_args().out_dir)
-
-
 if __name__ == "__main__":
-    main()
+    download_all()

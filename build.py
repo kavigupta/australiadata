@@ -47,11 +47,11 @@ def main():
         print(f"  {name+'_SHP.zip':28} {len(frame):6,} regions  {os.path.getsize(path)/2**20:7.2f} MiB")
 
     blocks = build_blocks(
-        os.path.join(args.raw_dir, "Mesh_Block_Counts_2021.xlsx"),
-        os.path.join(args.raw_dir, "MB_2021_AUST_SHP_GDA2020.zip"),
+        os.path.join(RAW_DIR, "Mesh_Block_Counts_2021.xlsx"),
+        os.path.join(RAW_DIR, "MB_2021_AUST_SHP_GDA2020.zip"),
     )
-    write_blocks(args.out_dir, blocks)
-    path = os.path.join(args.out_dir, "mb_blocks.npz")
+    write_blocks(OUT_DIR, blocks)
+    path = os.path.join(OUT_DIR, "mb_blocks.npz")
     print(f"  {'mb_blocks.npz':28} {len(blocks):6,} blocks  {os.path.getsize(path)/2**20:7.2f} MiB")
 
 

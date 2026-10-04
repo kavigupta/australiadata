@@ -7,6 +7,8 @@ Builds the 2021 ABS geography urbanstats uses into `data/processed/`:
 
 | Layer | |
 |---|---|
+| MB | Mesh Block, the smallest unit; populated ones are written as points to `mb_blocks.npz` |
+| SA1 | Statistical Area Level 1, the unit ABS publishes census tables for |
 | STE | State or territory |
 | SA2 | Statistical Area Level 2 |
 | SUA | Significant Urban Area |

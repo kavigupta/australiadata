@@ -16,8 +16,8 @@ Builds the 2021 ABS geography urbanstats uses into `data/processed/`:
 | LGA | Local Government Area |
 | SAL | Suburb and Locality |
 | POA | Postal Area |
-| CED | Commonwealth Electoral Division |
-| SEDL | State Electoral Division, lower house |
-| SEDU | State Electoral Division, upper house (Vic, WA, Tas only) |
+| CED | Commonwealth Electoral Division, as drawn for the 2025 election |
+| SEDL | State Electoral Division, lower house, as of 2025 |
+| SEDU | State Electoral Division, upper house (Vic and Tas only), as of 2025 |
 
 SEDL and SEDU are not ABS layers: `abs/electorates.py` splits ABS's single SED layer into them.

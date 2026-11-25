@@ -35,8 +35,8 @@ def main():
     download_all()
     os.makedirs(OUT_DIR, exist_ok=True)
 
-    lower, upper = split_sed(os.path.join(RAW_DIR, "SED_2021_AUST_GDA2020_SHP.zip"))
-    regions = [("SEDL_2021_AUST", lower), ("SEDU_2021_AUST", upper), ("CED_2025_AUST", federal_divisions(RAW_DIR))]
+    lower, upper = split_sed(os.path.join(RAW_DIR, "SED_2025_AUST_GDA2020.zip"))
+    regions = [("SEDL_2025_AUST", lower), ("SEDU_2025_AUST", upper), ("CED_2025_AUST", federal_divisions(RAW_DIR))]
     regions += [
         (name, normalise(RAW_DIR, filename))
         for name, filename in REGION_LAYERS.items()
